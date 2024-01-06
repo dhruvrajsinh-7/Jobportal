@@ -13,6 +13,7 @@ class JobPolicy
      */
     public function viewAny(User $user): bool
     {
+        dd('viewAny authorized');
         return true;
     }
     public function viewAnyEmployer(User $user): bool
@@ -25,6 +26,7 @@ class JobPolicy
      */
     public function view(User $user, Job $job): bool
     {
+        dd('view authorized');
         return true;
     }
 

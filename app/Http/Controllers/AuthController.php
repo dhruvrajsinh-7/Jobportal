@@ -31,7 +31,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             return redirect()->intended('/');
         } else {
-            return redirect()->back()->with('errpr', 'invalid credentials');
+            return redirect()->back()->with('error', 'invalid credentials');
         }
     }
 
