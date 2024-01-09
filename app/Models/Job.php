@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Job extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['title', 'location', 'description', 'experience', 'category', 'salary'];
+    protected $fillable = ['title', 'location', 'description', 'experience', 'category', 'salary', 'employer_id'];
     public static array $experience = ['entry', 'intermediate', 'senior'];
     public static array $category = ['IT', 'Finance', 'Marketing', 'Sales'];
     public function employer(): BelongsTo
