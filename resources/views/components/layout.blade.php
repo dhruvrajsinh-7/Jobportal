@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Laravel Job Board</title>
+    <link rel="stylesheet" href="{{ asset('resources/css/app.css') }}">
+    <script src="{{ asset('resources/js/app.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
