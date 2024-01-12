@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class JobRestoreController extends Controller
 {
     //
-    public function restore(Job $myJob)
+    public function restore(Job $job)
     {
-        $job = Job::withTrashed()->findOrFail($myJob->id);
-        dd($job);
-        $this->authorize('restore', $job);
-        $job->restore();
+        $my_job = Job::withTrashed()->findOrFail($job->id);
+        // dd($my_job);
+        $this->authorize('restore', $my_job);
+        $my_job->restore();
         return redirect()->route('my-jobs.index')->with('success', 'Job restored successfully.');
     }
 }
