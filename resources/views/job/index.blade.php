@@ -6,7 +6,7 @@
                 <div>
                     <div class="mb-1 font-semibold">Search</div>
                     <x-text-input name="search" value="{{ request('search') }}" placeholder="Search for any text"
-                        form-ref="filtes" />
+                        form-ref="filters" />
                 </div>
                 <div>
                     <div class="mb-1 font-semibold">Salary</div>

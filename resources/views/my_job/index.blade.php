@@ -35,6 +35,13 @@
                         @method('DELETE')
                         <x-button type="submit">Delete</x-button>
                     </form>
+
+                    {{-- restore deleted job --}}
+                    <form action="{{ route('job.restore', $job) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <x-button type="submit">Restore</x-button>
+                    </form>
                 </div>
             </div>
         </x-job-card>

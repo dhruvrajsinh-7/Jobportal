@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobRestoreController;
 use App\Http\Controllers\MyApplicationController;
 use App\Http\Controllers\MyJobController;
 use Illuminate\Support\Facades\Route;
@@ -43,4 +44,5 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('employer')
         ->resource('my-jobs', MyJobController::class);
+    Route::patch('my-jobs/{job}/restore', [JobRestoreController::class, 'restore'])->name('job.restore');
 });
