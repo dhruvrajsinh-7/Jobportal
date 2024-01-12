@@ -14,6 +14,8 @@
             </div>
         @endcan
     </x-job-card>
+    <h1>currently seen by {{ $counter }} ppl</h1>
+
     <x-card class="mb-4">
         <h2 class="mb-4 text-lg font-medium">
             More {{ $job->employer->company_name }} Jobs

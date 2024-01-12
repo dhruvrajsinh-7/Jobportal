@@ -50,7 +50,7 @@ class MyJobController extends Controller
      */
     public function edit(Job $myJob)
     {
-        // $this->authorize('update', $myJob);
+        $this->authorize('update', $myJob);
         return view('my_job.edit', ['job' => $myJob]);
     }
 

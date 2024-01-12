@@ -11,9 +11,8 @@ class JobPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
-        dd('viewAny authorized');
         return true;
     }
     public function viewAnyEmployer(User $user): bool
@@ -24,9 +23,8 @@ class JobPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Job $job): bool
+    public function view(?User $user, Job $job): bool
     {
-        dd('view authorized');
         return true;
     }
 

@@ -42,7 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('employer', EmployerController::class)
         ->only(['create', 'store']);
 
-    Route::middleware('employer')
-        ->resource('my-jobs', MyJobController::class);
-    Route::patch('my-jobs/{job}/restore', [JobRestoreController::class, 'restore'])->name('job.restore');
+    Route::middleware('employer')->group(function () {
+        Route::resource('my-jobs', MyJobController::class);
+        Route::patch('my-jobs/{job}/restore', [JobRestoreController::class, 'restore'])->name('job.restore');
+    });
 });
