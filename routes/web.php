@@ -44,6 +44,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('employer')->group(function () {
         Route::resource('my-jobs', MyJobController::class);
-        Route::patch('my-jobs/{job}/restore', [JobRestoreController::class, 'restore'])->name('job.restore');
+        Route::patch('my-jobs/{job}/restore', [JobRestoreController::class, 'index'])->name('job.restore');
     });
 });

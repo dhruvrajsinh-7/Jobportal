@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class JobRestoreController extends Controller
 {
     //
-    public function restore(Job $job)
+    public function index(Job $job)
     {
         $my_job = Job::withTrashed()->find($job->id);
         if (!$my_job) {
@@ -18,7 +18,7 @@ class JobRestoreController extends Controller
             return redirect()->route('my-jobs.index')->with('error', 'Job is not deleted.');
         }
         // dd($my_job);
-        // $this->authorize('restore', $my_job);
+        $this->authorize('restore', $my_job);
         $my_job->restore();
         return redirect()->route('my-jobs.index')->with('success', 'Job restored successfully.');
     }

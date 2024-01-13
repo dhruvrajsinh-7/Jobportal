@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Job;
 use App\Models\JobApplication;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Cache;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Cache::tags(['jobs', 'job'])->flush();
         \App\Models\User::factory()->create([
             'name' => 'dhruv',
             'email' => 'dhruv@gmail.com',

@@ -21,11 +21,13 @@ class JobController extends Controller
             'experience',
             'category'
         );
-
+        $jobs = Cache::tags(['jobs'])->rememberForever("jobs-" . serialize($filters), function () use ($filters) {
+            return Job::with('employer')->latest()->filter($filters)->get();
+        });
         return view(
             'job.index',
             [
-                'jobs' => Job::with('employer')->latest()->filter($filters)->get()
+                'jobs' => $jobs,
             ]
         );
     }
@@ -36,10 +38,13 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $this->authorize('view', $job);
+        $job = Cache::tags(['job'])->rememberForever("job-{$job->id}", function () use ($job) {
+            return Job::with('employer')->find($job->id);
+        });
         $sessionId = session()->getId();
         $counterKey = "job-post-{$job->id}-counter";
         $userkey = "job-post-{$job->id}-user";
-        $users = Cache::get($userkey, []);
+        $users = Cache::tags(['job'])->get($userkey, []);
         $userupdate = [];
         $difference = 0;
 
@@ -57,16 +62,16 @@ class JobController extends Controller
         $userupdate[$sessionId] = now();
         Cache::forever($userkey, $userupdate);
 
-        if (!Cache::has($counterKey)) {
-            Cache::forever($counterKey, 1);
+        if (!Cache::tags(['job'])->has($counterKey)) {
+            Cache::tags(['job'])->forever($counterKey, 1);
         } else {
-            Cache::increment($counterKey, $difference);
+            Cache::tags(['job'])->increment($counterKey, $difference);
         }
-        $counter = Cache::get($counterKey);
+        $counter = Cache::tags(['job'])->get($counterKey);
         return view(
             'job.show',
             [
-                'job' => $job->load('employer.jobs'),
+                'job' => $job,
                 'counter' => $counter
             ]
         );

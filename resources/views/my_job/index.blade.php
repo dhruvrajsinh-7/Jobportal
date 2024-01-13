@@ -37,7 +37,7 @@
                     </form>
 
                     {{-- restore deleted job --}}
-                    <form action="{{ route('job.restore', $job) }}" method="POST">
+                    <form action="{{ route('job.restore', $job->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <x-button type="submit">Restore</x-button>
